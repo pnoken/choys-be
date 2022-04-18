@@ -1,5 +1,5 @@
 import {Application} from "express";
-import {create, all, get, patch, remove} from "./controller";
+import {create, get, patch, remove} from "./controller";
 import {isAuthenticated} from "../auth/authenticated";
 import {isAuthorized} from "../auth/authorized";
 
@@ -9,7 +9,7 @@ export function routesConfigTenants(app: Application) {
       isAuthorized({hasRole: ["admin", "manager"]}),
       create);
 
-  // List all tenants
+  //List all tenants
 //   app.get("/tenants", [
 //     isAuthenticated,
 //     isAuthorized({hasRole: ["admin", "manager"]}),
