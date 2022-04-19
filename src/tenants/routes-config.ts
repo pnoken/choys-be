@@ -5,14 +5,10 @@ import {isAuthorized} from "../auth/authorized";
 
 export function routesConfigTenants(app: Application) {
   app.post("/tenants",
-      isAuthenticated,
-      isAuthorized({hasRole: ["admin", "manager"]}),
       create);
 
   //List all tenants
   app.get("/tenants", [
-    isAuthenticated,
-    isAuthorized({hasRole: ["admin", "manager"]}),
     all,
   ]);
 
