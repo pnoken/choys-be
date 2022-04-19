@@ -1,20 +1,20 @@
 import {Request, Response} from "express";
 import * as admin from "firebase-admin";
 
-// export async function all(req: Request, res: Response, nextPageToken: string) {
-//   try {
-//     const listTenants = await admin.auth().tenantManager().listTenants(100, nextPageToken);
-//     listTenants.tenants.forEach((tenant) => {
-//         return res.status(200).send(tenant.toJSON())
-//     })
-//     // if(listTenants.pageToken){
-//     //     return all(listTenants.pageToken);
-//     // }
+export async function all(req: Request, res: Response) {
+  try {
+    const listTenants = await admin.auth().tenantManager().listTenants();
+    listTenants.tenants.forEach((tenant) => {
+        return res.status(200).send(tenant.toJSON())
+    })
+    // if(listTenants.pageToken){
+    //     return all(listTenants.pageToken);
+    // }
     
-//   } catch (err){
-//       handleError(res, err)
-//   }
-// }
+  } catch (err){
+      handleError(res, err)
+  }
+}
 
 export async function get(req: Request, res: Response) {
   try {
@@ -71,6 +71,7 @@ export async function remove(req: Request, res: Response) {
     return handleError(res, err);
   }
 }
+
 
 function handleError(res: Response, err: any) {
   return res.status(500).send({message: `${err.code} - ${err.message}`});
